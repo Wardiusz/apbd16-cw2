@@ -94,18 +94,16 @@ public class Container_L : Container, IHazardNotifier {
 public class Container_C : Container {
         private string cargo;
         private double required_temperature;
-        private double temperature;
-        public Container_C(double height, double depth, double capacity, double container_weight, string cargo, double temperature)
+        public Container_C(double height, double depth, double capacity, double container_weight, string cargo, double required_temperature)
                 : base(ContainerType.C, height, depth, capacity, container_weight)
         {
                 this.cargo = cargo;
-                this.temperature = temperature;
-                required_temperature = temperature;
+                this.required_temperature = required_temperature;
         }
-        public override void LoadCargo(double cargoWeight) {
-                if (temperature < required_temperature) {
-                        throw new InvalidOperationException($"Cannot load cargo. Container temperature ({temperature}°C) is lower than required ({required_temperature}°C) for {cargo}.");
+        public void LoadCargo(double cargo_weight, double cargo_temperature) {
+                if (Math.Abs(cargo_temperature - required_temperature) > 0.1) {
+                        throw new ArgumentException($"Cannot load cargo. Container temperature ({cargo_temperature}°C) is different than required ({required_temperature}°C) for {cargo}.");
                 }
-                base.LoadCargo(cargoWeight);
+                base.LoadCargo(cargo_weight);
         }
 }
