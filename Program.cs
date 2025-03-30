@@ -6,14 +6,14 @@ class Program {
         CargoShip ship2 = new CargoShip("IncontinentiaButtocks", 30, 3, 30);
         CargoShip ship3 = new CargoShip("NaughtiusMaximus", 28, 4, 40);
 
-        Container c1 = new Container_L(2.5, 3, 10, 2, false);
+        var c1 = new Container_L(2.5, 3, 10, 2, false);
         c1.LoadCargo(8);
 
-        Container c2 = new Container_G(2.5, 3, 8, 1.8, 5);
+        var c2 = new Container_G(2.5, 3, 8, 1.8, 5);
         c2.LoadCargo(6);
 
-        Container c3 = new Container_C(2.5, 3, 5, 1.5, "Bananas", -5);
-        c3.LoadCargo(4);
+        var c3 = new Container_C(2.5, 3, 5, 1.5, "Bananas", -5);
+        c3.LoadCargo(4, -5);
 
         Console.WriteLine($"--- Załadunek kontenerów na {ship1.ship_name} ---\n");
         ship1.LoadContainer(c1);
